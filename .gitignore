@@ -1,0 +1,15 @@
+config.yaml
+outputs/
+*.ply
+*.gif
+*.pt
+*.ckpt
+*.pth
+checkpoints/
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.egg-info/
+.DS_Store
+wandb/
