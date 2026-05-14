@@ -28,7 +28,7 @@ outputs/photo/
 ├── photo_data.npz             # Stage 3: all raw Gaussian arrays + transforms as numpy
 ├── photo_summary.json         # Stage 3: human-readable stats (size, position, rotation)
 ├── photo_obj0_mesh.obj        # Stage 3: extracted triangle mesh (per object)
-└── photo_obj0.glb             # Stage 3: textured 3D model (per object, openable in Blender)
+└── photo_obj0.glb             # Stage 3: textured 3D model
 ```
 
 ---
