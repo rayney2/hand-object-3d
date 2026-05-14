@@ -12,29 +12,6 @@ The pipeline runs in three stages, each backed by a different AI model:
 
 Each stage runs in its own conda environment because the three models have incompatible dependencies. A lightweight orchestrator (`run_pipeline.py`) coordinates them via subprocess calls.
 
-## Architecture
-
-```
-Input folder of images
-        │
-        ▼
-┌───────────────────┐
-│  run_pipeline.py  │  ◄── pipeline conda env (just pyyaml)
-│   (orchestrator)  │
-└─────────┬─────────┘
-          │ subprocess + conda run
-          ▼
-   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-   │   Stage 1    │───►│   Stage 2    │───►│   Stage 3    │
-   │  Detection   │    │ Segmentation │    │Reconstruction│
-   └──────────────┘    └──────────────┘    └──────────────┘
-   (detector env)       (sam2 env)         (sam3d env)
-   uses external        uses external      uses external
-   hand_object_         sam2 repo          sam-3d-objects
-   detector repo                           repo
-```
-
-Outputs accumulate in `outputs/{image_name}/` — each image gets its own folder containing intermediate and final artifacts.
 
 ## Output Structure
 
