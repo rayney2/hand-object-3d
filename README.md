@@ -14,7 +14,7 @@ Each stage runs in its own conda environment because the three models have incom
 
 ## Example
 
-The pipeline takes a single first-person photo of a hand holding an object and produces a 3D Gaussian splat reconstruction of just the object — no hand, no background.
+The pipeline takes a single first-person photo of a hand holding an object and produces a 3D Gaussian splat reconstruction.
 
 <table>
 <tr>
@@ -22,8 +22,8 @@ The pipeline takes a single first-person photo of a hand holding an object and p
 <td align="center"><b>Reconstructed 3D object</b></td>
 </tr>
 <tr>
-<td><img src="image.png" width="400"/></td>
-<td><img src="outputs/IMG_4189/IMG_4189.gif" width="400"/></td>
+<td><img src="docs/examples/input.png" width="400"/></td>
+<td><img src="docs/examples/output.gif" width="400"/></td>
 </tr>
 </table>
 
