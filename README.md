@@ -19,12 +19,16 @@ For an input image `photo.jpg`, the pipeline produces:
 
 ```
 outputs/photo/
-├── metadata.json     # Stage 1: bboxes, scores, contact state
-├── detection.png     # Stage 1: visualization with boxes drawn
-├── image.png         # Stage 2: original image (for stage 3 input)
-├── 0.png             # Stage 2: RGBA mask cutout
-├── photo.ply         # Stage 3: 3D Gaussian splat
-└── photo.gif         # Stage 3: turntable render
+├── metadata.json              # Stage 1: hand and object bboxes, scores, contact state
+├── detection.png              # Stage 1: visualization with boxes drawn
+├── image.png                  # Stage 2: original image
+├── 0.png                      # Stage 2: RGBA segmented object cutout
+├── photo.ply                  # Stage 3: combined 3D Gaussian splat
+├── photo.gif                  # Stage 3: 300-frame turntable render preview
+├── photo_data.npz             # Stage 3: all raw Gaussian arrays + transforms as numpy
+├── photo_summary.json         # Stage 3: human-readable stats (size, position, rotation)
+├── photo_obj0_mesh.obj        # Stage 3: extracted triangle mesh (per object)
+└── photo_obj0.glb             # Stage 3: textured 3D model (per object, openable in Blender)
 ```
 
 ---
