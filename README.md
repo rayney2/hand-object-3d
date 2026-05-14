@@ -213,6 +213,39 @@ source ~/miniconda3/etc/profile.d/conda.sh   # adjust path to your conda
 **Different GPUs per stage** — Set different `cuda_device` values per stage in `config.yaml` if you want to spread work across multiple GPUs.
 
 ---
+## Estimating Real-World Size and Distance
+
+The 3D reconstruction in Stage 3 is **scale-ambiguous** by design — a single image can't tell whether you're looking at a real coffee cup or a giant prop. All coordinates in `_summary.json` are in normalized units that describe the object's *shape and relative depth*, not its real size.
+
+To recover real-world measurements you need at least one **reference of known size** in the image. The most natural reference for hand-held photos is the **hand itself**, since human hands have well-documented average dimensions.
+
+Real-world size estimation;
+
+**Step 1 — pixels-to-cm calibration from the hand:**
+```
+pixels_per_cm = hand_pixel_width / hand_real_width_cm
+```
+
+The hand's pixel width comes from Stage 1's `metadata.json` (the `hands[0].bbox` field). The hand's real width is assumed from average adult anatomy.
+
+**Step 2 — object size estimation:**
+```
+object_real_width_cm = object_pixel_width / pixels_per_cm
+```
+
+The object's pixel width comes from Stage 1's `metadata.json` (the `objects[0].bbox` field).
+
+**Step 3 — distance estimation (requires camera focal length):**
+
+Using the pinhole camera model:
+```
+distance_cm = (focal_length_pixels × object_real_width_cm) / object_pixel_width
+```
+
+The focal length in pixels can come from EXIF metadata or be approximated from the focal length in mm and the sensor size:
+```
+focal_length_pixels ≈ (focal_length_mm × image_width_pixels) / sensor_width_mm
+```
 
 ## Project Structure
 
