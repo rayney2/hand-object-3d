@@ -12,6 +12,20 @@ The pipeline runs in three stages, each backed by a different AI model:
 
 Each stage runs in its own conda environment because the three models have incompatible dependencies. A lightweight orchestrator (`run_pipeline.py`) coordinates them via subprocess calls.
 
+## Example
+
+The pipeline takes a single first-person photo of a hand holding an object and produces a 3D Gaussian splat reconstruction of just the object — no hand, no background.
+
+<table>
+<tr>
+<td align="center"><b>Input photo</b></td>
+<td align="center"><b>Reconstructed 3D object</b></td>
+</tr>
+<tr>
+<td><img src="image.png" width="400"/></td>
+<td><img src="outputs/IMG_4189/IMG_4189.gif" width="400"/></td>
+</tr>
+</table>
 
 ## Output Structure
 
